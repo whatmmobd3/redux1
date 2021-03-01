@@ -3,8 +3,8 @@ import './PeopleAdd.css'
 
 const app = props => {
   return (
-    <div className="People">
-      <button onClick={props.onAddPeople}>Add People</button>
+    <div className="PeopleAdd">
+      <button onClick={props.peopleAdd}>Add People</button>
     </div>
   );
 };

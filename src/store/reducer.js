@@ -7,12 +7,26 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD:
-      return state;
+      const newPeople = {
+        id: Math.random(),
+        name: "David",
+        age: Math.floor(Math.random() * 40),
+      };
+
+      let people = [...state.people, newPeople];
+      return {
+        ...state,
+        people
+      };
+
     case actionTypes.REMOVE:
-      return state;
+      return {
+        ...state,
+        people: state.people.filter((e) => e.id !== action.peopleId),
+      };
     default:
-      return state;
   }
+  return state;
 };
 
 export default reducer;

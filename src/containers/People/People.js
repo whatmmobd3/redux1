@@ -1,43 +1,42 @@
 import React, { Component } from "react";
-import PeopleAdd from "../../components/PeopleAdd/PeopleAdd";
-import PeopleRemove from "../../components/PeopleRemove/PeopleRemove";
+import { connect } from "react-redux";
 
-// import * as actionTypes from "../../store/actions"
+import PeopleAdd from "../../components/PeopleAdd/PeopleAdd";
+import People from "../../components/People/People";
+
+import * as actionTypes from "../../store/actions";
 
 class App extends Component {
-  state = {
-    people: [],
-  };
-
-  btnClick = () => {
-    let people = this.state.people;
-
-    const p = {
-      id: 1,
-      name: "David",
-      age: Math.floor(Math.random() * 100 + 1),
-    };
-
-    people = [...people, p];
-    this.setState({ people });
-  };
-
-  btnRemove = () => {
-    console.log("remove");
-  };
-
   render() {
-    const { people } = this.state;
-
+    
+    const { prs, onAdd, onRemove } = this.props;
     return (
       <div>
-        <PeopleAdd onAddPeople={this.btnClick} />
-        {people.map((e) => {
-          return <PeopleRemove key={e.age} data={e} />;
-        })}
+        <PeopleAdd peopleAdd={onAdd} />
+        {prs.map((e) => (
+          <People
+            key={e.id}
+            name={e.name}
+            age={e.age}
+            clicked={() => console.log(e)}
+          />
+        ))}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    prs: state.people,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAdd: () => dispatch({ type: actionTypes.ADD }),
+    onRemove: (e) => dispatch({ type: actionTypes.REMOVE, personId: e }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
