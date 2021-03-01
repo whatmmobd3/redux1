@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import "./PeopleRemove.css";
 
-const App = () => {
-    return (
-        <div>
-            <p>Peple Remove</p>
-        </div>
-    )
-}
+const App = (props) => {
+  return (
+    <div className="PeopleRemove">
+      <p>Name: {props.data.name}</p>
+      <p>Age: {props.data.age}</p>
+    </div>
+  );
+};
 
-export default App
+export default App;

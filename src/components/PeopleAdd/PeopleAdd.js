@@ -1,9 +1,10 @@
 import React from "react";
+import './PeopleAdd.css'
 
-const app = () => {
+const app = props => {
   return (
-    <div>
-      <p>Peple Add</p>
+    <div className="People">
+      <button onClick={props.onAddPeople}>Add People</button>
     </div>
   );
 };
