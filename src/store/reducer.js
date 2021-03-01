@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
       let people = [...state.people, newPeople];
       return {
         ...state,
-        people
+        people,
       };
 
     case actionTypes.REMOVE:

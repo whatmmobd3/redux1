@@ -8,7 +8,6 @@ import * as actionTypes from "../../store/actions";
 
 class App extends Component {
   render() {
-    
     const { prs, onAdd, onRemove } = this.props;
     return (
       <div>
@@ -18,7 +17,7 @@ class App extends Component {
             key={e.id}
             name={e.name}
             age={e.age}
-            clicked={() => console.log(e)}
+            aaa={() => onRemove(e.id)}
           />
         ))}
       </div>
@@ -35,7 +34,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAdd: () => dispatch({ type: actionTypes.ADD }),
-    onRemove: (e) => dispatch({ type: actionTypes.REMOVE, personId: e }),
+    onRemove: (e) => dispatch({ type: actionTypes.REMOVE, peopleId: e }),
   };
 };
 
